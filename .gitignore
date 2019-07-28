@@ -74,3 +74,6 @@ sw.*
 
 # Mac OSX
 .DS_Store
+
+# dist
+dist

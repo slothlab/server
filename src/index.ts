@@ -1,3 +1,5 @@
+// const cors = require('micro-cors')(); // highlight-line
+import Cors from 'micro-cors'
 import { ApolloServer, gql } from 'apollo-server-micro'
 
 const typeDefs = gql`
@@ -12,5 +14,7 @@ const resolvers = {
     }
 };
 
+const cors = Cors()
+
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
-module.exports = apolloServer.createHandler();
+module.exports = cors(apolloServer.createHandler());

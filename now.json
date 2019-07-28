@@ -1,7 +1,12 @@
 {
-  "public": true,
-  "type": "docker",
-  "features": {
-    "cloud": "v2"
-  }
+  "name": "sloth-server",
+  "version": 2,
+  "builds": [
+    { "src": "src/index.ts", "use": "@now/node@canary" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/src/index.ts" }
+  ],
+  "alias": ["sloth"],
+  "public": true
 }

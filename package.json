@@ -16,7 +16,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "micro -l tcp://0.0.0.0:3001"
+    "start": "micro -l tcp://0.0.0.0:3001",
+    "docker": "docker build --tag sloth-server ."
   },
   "keywords": [],
   "author": "",

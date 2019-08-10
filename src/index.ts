@@ -6,10 +6,8 @@ import { ApolloServer, gql } from 'apollo-server-micro'
 import { resolvers } from './resolvers'
 
 const typeDefs = gql`
-    type User {
-        id: Int
-        name: String
-        email: String
+    type Mutation {
+        signUp(name: String!, email: String!, password: String!): User
     }
 
     type Query {
@@ -18,6 +16,12 @@ const typeDefs = gql`
         log: String
         user(id: Int!): User
         users: [User]
+    }
+
+    type User {
+        id: Int
+        name: String
+        email: String
     }
 `;
 

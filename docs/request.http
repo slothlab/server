@@ -1,0 +1,35 @@
+POST http://0.0.0.0:3001/graphql HTTP/1.1
+Content-Type: application/json
+X-Request-Type: GraphQL
+
+query user($id: Int!) {
+  user(id: $id) {
+  	id
+    name
+    email
+  }
+}
+
+{
+  "id": 1
+}
+
+### 
+
+POST http://0.0.0.0:3001/graphql HTTP/1.1
+Content-Type: application/json
+X-Request-Type: GraphQL
+
+mutation($name: String!, $email: String!, $password: String!) {
+  signUp(name: $name, email: $email, password: $password) {
+    id
+    name
+    email
+  }
+}
+
+{
+  "name": "rhio",
+  "email": "rhio.kim@gmail.com",
+  "password": "!234"
+}

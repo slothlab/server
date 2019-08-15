@@ -16,11 +16,17 @@ interface SignUp {
   password: string
 }
 
+interface Todo {
+  title: string
+}
+
 const users = [
   { id: 1, name: 'Richard', email: 'a@a.com', password: '!234' },
   { id: 2, name: 'John', email: 'b@a.com', password: '1@34'},
   { id: 3, name: 'Dogulas', email: 'c@a.com', password: '12#4' }
 ]
+
+const todos = []
 
 export const resolvers = {
   Query: {
@@ -47,6 +53,16 @@ export const resolvers = {
       }
       users.push(user)
       return user
+    },
+    createTodo: (root: any, { title }: Todo, context: any) => {
+      const todo = {
+        id: todos.length + 1,
+        title,
+        completed: false,
+        createdAt: new Date()
+      }
+      todos.push(todo)
+      return todo
     }
   }
 }

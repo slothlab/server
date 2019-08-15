@@ -8,6 +8,7 @@ import { resolvers } from './resolvers'
 const typeDefs = gql`
     type Mutation {
         signUp(name: String!, email: String!, password: String!): User
+        createTodo(title: String!): Todo
     }
 
     type Query {
@@ -19,9 +20,16 @@ const typeDefs = gql`
     }
 
     type User {
-        id: Int
+        id: Int!
         name: String
         email: String
+    }
+
+    type Todo {
+        id: Int!
+        title: String!
+        completed: Boolean!
+        createdAt: String
     }
 `;
 

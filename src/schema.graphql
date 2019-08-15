@@ -12,5 +12,6 @@ type User {
 type Todo {
   id: ID! @unique
   title: String!
-  completed: Boolean
+  completed: Boolean!
+  createdAt: String
 }

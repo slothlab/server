@@ -9,6 +9,8 @@ const typeDefs = gql`
     type Mutation {
         signUp(name: String!, email: String!, password: String!): User
         createTodo(title: String!): Todo
+        toggleTodo(id: Int!, completed: Boolean): Todo
+        removeTodo(id: Int!): Todo
     }
 
     type Query {

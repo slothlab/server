@@ -75,6 +75,17 @@ export const resolvers = {
       }
       todos.push(todo)
       return todo
-    }
+    },
+    toggleTodo: (root: any, params: any, context: any) => {
+      const todo = todos.find(t => t.id === params.id)
+      if (todo) {
+        todo.completed = params.completed
+      }
+      return todo
+    },
+    removeTodo: (root: any, params: any, context: any) => {
+      const idx = todos.findIndex(t => t.id === params.id)
+      return todos.splice(idx, 1)
+    },
   }
 }

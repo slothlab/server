@@ -1,3 +1,7 @@
+interface App {
+  name: string
+}
+
 interface Me {
   name: string
 }
@@ -20,13 +24,16 @@ const users = [
 
 export const resolvers = {
   Query: {
-    hello: (a: string) => `Hello ${a}`,
+    hello: (root: any, { name }: App, context: any): string => {
+      console.log(name)
+      return `Hello ${name}`
+    },
     me: (root: any, { name }: Me, context: any): string => {
       console.log(name)
       return name
     },
     log: () => {
-        return new Date()
+      return new Date()
     },
     user: (root: any, { id }: User) => {
       return users.filter(user => user.id === id)[0]

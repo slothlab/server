@@ -11,7 +11,7 @@ const typeDefs = gql`
     }
 
     type Query {
-        hello(a: String!): String
+        hello(name: String!): String
         me(name: String!): String
         log: String
         user(id: Int!): User

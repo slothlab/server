@@ -94,3 +94,22 @@ mutation toggleTodo($id: Int!, $completed: Boolean) {
   "id": 2,
   "completed": true
 }
+
+###
+
+POST http://0.0.0.0:3001/graphql HTTP/1.1
+Content-Type: application/json
+X-Request-Type: GraphQL
+
+mutation removeTodo($id: Int!) {
+  removeTodo(id: $id) {
+    id
+    title
+    completed
+    createdAt
+  }
+}
+
+{
+  "id": 3
+}

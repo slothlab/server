@@ -29,6 +29,7 @@ const users = [
   { id: 3, name: 'Dogulas', email: 'c@a.com', password: '12#4' }
 ]
 
+let INTERNAL_AUTO_INCREMENT = 0
 const todos: Todo[] = []
 
 export const resolvers = {
@@ -67,12 +68,15 @@ export const resolvers = {
       return user
     },
     createTodo: (root: any, { title }: any, context: any) => {
+      INTERNAL_AUTO_INCREMENT++
+
       const todo: Todo = {
-        id: todos.length + 1,
+        id: INTERNAL_AUTO_INCREMENT,
         title,
         completed: false,
         createdAt: new Date()
       }
+      
       todos.push(todo)
       return todo
     },
@@ -85,7 +89,8 @@ export const resolvers = {
     },
     removeTodo: (root: any, params: any, context: any) => {
       const idx = todos.findIndex(t => t.id === params.id)
-      return todos.splice(idx, 1)
+      const todo = todos.splice(idx, 1)
+      return todo[0]
     },
   }
 }

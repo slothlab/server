@@ -16,7 +16,10 @@ const typeDefs = gql`
         me(name: String!): String
         log: String
         user(id: Int!): User
-        users: [User]
+        users: [User],
+        today: [Todo],
+        yesterday: [Todo],
+        tomorrow: [Todo],
     }
 
     type User {

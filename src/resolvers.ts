@@ -17,7 +17,10 @@ interface SignUp {
 }
 
 interface Todo {
+  id: number
   title: string
+  completed: boolean
+  createdAt: Date
 }
 
 const users = [
@@ -26,7 +29,7 @@ const users = [
   { id: 3, name: 'Dogulas', email: 'c@a.com', password: '12#4' }
 ]
 
-const todos = []
+const todos: Todo[] = []
 
 export const resolvers = {
   Query: {
@@ -45,6 +48,15 @@ export const resolvers = {
       return users.filter(user => user.id === id)[0]
     },
     users: () => users,
+    today: (root: any, args: any, context: any) => {
+      return todos
+    },
+    yesterday: (root: any, args: any, context: any) => {
+      return todos
+    },
+    tomorrow: (root: any, args: any, context: any) => {
+      return todos
+    },
   },
   Mutation: {
     signUp: (root: any, { name, email, password }: SignUp) => {
@@ -54,8 +66,8 @@ export const resolvers = {
       users.push(user)
       return user
     },
-    createTodo: (root: any, { title }: Todo, context: any) => {
-      const todo = {
+    createTodo: (root: any, { title }: any, context: any) => {
+      const todo: Todo = {
         id: todos.length + 1,
         title,
         completed: false,

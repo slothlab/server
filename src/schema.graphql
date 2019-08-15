@@ -1,6 +1,7 @@
 type Query {
   users: [User!]!
-  user(id: ID!): User!
+  user(id: ID!): User!,
+  today: [Todo]!
 }
 
 type User {

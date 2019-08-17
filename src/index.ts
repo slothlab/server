@@ -22,6 +22,7 @@ const typeDefs = gql`
         today: [Todo],
         yesterday: [Todo],
         tomorrow: [Todo],
+        getUserToday(user: String!): [Todo]
     }
 
     type User {

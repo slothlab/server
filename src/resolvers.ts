@@ -58,6 +58,13 @@ export const resolvers = {
     tomorrow: (root: any, args: any, context: any) => {
       return todos
     },
+    /*****************
+     * web.ext
+     *****************/
+    getUserToday: (root: any, { user }: any, context: any) => {
+      console.log('getUserToday', user)
+      return todos
+    }
   },
   Mutation: {
     signUp: (root: any, { name, email, password }: SignUp) => {

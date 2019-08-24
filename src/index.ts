@@ -7,9 +7,11 @@ import { resolvers } from './resolvers'
 const typeDefs = gql`
     type Mutation {
         signUp(name: String!, email: String!, password: String!): User
+        authenticateUser(email: String!, password: String!): Token
         createTodo(title: String!): Todo
         toggleTodo(id: Int!, completed: Boolean): Todo
         removeTodo(id: Int!): Todo
+        saveHappiness(happiness: Int!, question: Int!, value: Int!): Answers
     }
 
     type Query {
@@ -24,6 +26,21 @@ const typeDefs = gql`
         getUserToday(user: String!): [Todo]
         getAllHappiness: [Happiness]
         happiness(id: Int!): Happiness
+    }
+
+    type ID {
+        id: Int!
+    }
+
+    enum QuestionTypeEnum {
+        number
+        boolean
+        string
+    }
+
+    type Token {
+        id: String!
+        token: String!
     }
 
     type User {
@@ -50,6 +67,15 @@ const typeDefs = gql`
         id: Int!
         title: String!
         type: String!
+    }
+
+    type Answer {
+        id: Int!
+        value: Int!
+    }
+
+    type Answers {
+        answers: [Answer]
     }
 `;
 

@@ -28,7 +28,7 @@ query hello($name: String!) {
   "name": "sloth"
 }
 
-### 
+###
 
 POST http://0.0.0.0:3001/graphql HTTP/1.1
 Content-Type: application/json
@@ -112,4 +112,44 @@ mutation removeTodo($id: Int!) {
 
 {
   "id": 3
+}
+
+###
+POST http://0.0.0.0:3001/graphql HTTP/1.1
+Content-Type: application/json
+X-Request-Type: GraphQL
+
+query ($id: Int!) {
+  happiness(id: $id) {
+    id
+    title
+    questions {
+      id
+      title
+      type
+    }
+    createdAt
+  }
+}
+
+{
+  "id": 1
+}
+
+###
+POST http://0.0.0.0:3001/graphql HTTP/1.1
+Content-Type: application/json
+X-Request-Type: GraphQL
+
+query {
+  getAllHappiness {
+    id
+    title
+    questions {
+      id
+      title
+      type
+    }
+    createdAt
+  }
 }

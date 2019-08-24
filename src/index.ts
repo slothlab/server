@@ -1,4 +1,3 @@
-// const cors = require('micro-cors')(); // highlight-line
 import { send } from 'micro'
 import Cors from 'micro-cors'
 import { get, post, router, options } from 'microrouter'
@@ -23,6 +22,8 @@ const typeDefs = gql`
         yesterday: [Todo],
         tomorrow: [Todo],
         getUserToday(user: String!): [Todo]
+        getAllHappiness: [Happiness]
+        happiness(id: Int!): Happiness
     }
 
     type User {
@@ -36,6 +37,19 @@ const typeDefs = gql`
         title: String!
         completed: Boolean!
         createdAt: String
+    }
+
+    type Happiness {
+        id: Int!
+        title: String!
+        questions: [Questions]
+        createdAt: String
+    }
+
+    type Questions {
+        id: Int!
+        title: String!
+        type: String!
     }
 `;
 
@@ -54,5 +68,3 @@ module.exports = cors(router(
     options(graphqlPath, (_, res) => send(res, 200)),
     (_, res) => send(res, 404, 'Not Found'),
 ))
-// module.exports = cors(apolloServer.createHandler());
-// module.exports = apolloServer.createHandler();

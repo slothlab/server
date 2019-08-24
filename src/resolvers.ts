@@ -29,6 +29,20 @@ const users = [
   { id: 3, name: 'Dogulas', email: 'c@a.com', password: '12#4' }
 ]
 
+const createdAt = new Date()
+const questions = [
+  { id: 1, title: 'My Daily Happiness', createdAt, questions: [
+    { id: 1, title: 'question - 1', type: 'number' },
+    { id: 2, title: 'question - 2', type: 'number' },
+    { id: 3, title: 'question - 3', type: 'number' }
+  ] },
+  { id: 2, title: 'Weekly Happiness', createdAt, questions: [
+    { id: 1, title: 'question - 2', type: 'number' },
+    { id: 2, title: 'question - 3', type: 'number' },
+    { id: 3, title: 'question - 4', type: 'number' }
+  ] }
+]
+
 let INTERNAL_AUTO_INCREMENT = 0
 const todos: Todo[] = []
 
@@ -64,6 +78,15 @@ export const resolvers = {
     getUserToday: (root: any, { user }: any, context: any) => {
       console.log('getUserToday', user)
       return todos
+    },
+    /*****************
+     * happiness
+     *****************/
+    getAllHappiness: () => {
+      return questions
+    },
+    happiness: (root: any, { id }: any, context: any) => {
+      return questions.find(i => i.id = id)
     }
   },
   Mutation: {
@@ -83,7 +106,7 @@ export const resolvers = {
         completed: false,
         createdAt: new Date()
       }
-      
+
       todos.push(todo)
       return todo
     },
